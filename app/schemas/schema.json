@@ -1,0 +1,67 @@
+{
+  "departments": {
+    "description": "Contains department details. Use this table to list, rank, group, or count departments. Essential when the question asks to rank departments by enrollment, headcount, or any aggregate metric grouped by department name.",
+    "columns": {
+      "id": "INTEGER - Primary key uniquely identifying each department",
+      "name": "TEXT - Name of the department, e.g., 'Computer Science', 'Mathematics', 'Biology', 'History'",
+      "manager_name": "TEXT - Name of the professor who manages the department",
+      "building": "TEXT - The physical building where the department is located, e.g., 'Main Hall', 'Science Center'"
+    }
+  },
+  "students": {
+    "description": "Contains student personal details, email, and their enrolled department. Good for finding student names, emails, registration dates, and department associations.",
+    "columns": {
+      "id": "INTEGER - Primary key uniquely identifying each student",
+      "name": "TEXT - Full name of the student",
+      "email": "TEXT - University email address of the student",
+      "department_id": "INTEGER - Foreign key referencing departments.id",
+      "enroll_date": "TEXT - Date when the student registered, formatted as 'YYYY-MM-DD'"
+    }
+  },
+  "courses": {
+    "description": "Contains course details, credits, delivery mode (online or in-person), and offering department. Use this to filter courses by type such as online courses, find credit hours, or join with enrollments to exclude certain course types.",
+    "columns": {
+      "id": "INTEGER - Primary key uniquely identifying each course",
+      "title": "TEXT - Name of the course, e.g., 'Introduction to Python', 'Calculus I'",
+      "credits": "INTEGER - Number of credit hours for the course, e.g., 3, 4",
+      "department_id": "INTEGER - Foreign key referencing departments.id",
+      "is_online": "INTEGER - 1 if the course is delivered online, 0 if in-person. Use this to exclude or filter online courses."
+    }
+  },
+  "enrollments": {
+    "description": "Contains student course enrollment records, grades, and semesters. Use this to count how many students are enrolled, calculate total enrollment per department or course, find which students take which courses, and filter by semester or grade.",
+    "columns": {
+      "student_id": "INTEGER - Foreign key referencing students.id",
+      "course_id": "INTEGER - Foreign key referencing courses.id",
+      "grade": "TEXT - Grade received by the student, e.g., 'A', 'B', 'C', 'D', 'F'",
+      "enroll_semester": "TEXT - Semester enrolled, e.g., 'Fall 2023', 'Spring 2024'"
+    }
+  },
+  "professors": {
+    "description": "Contains professor details, offices, emails, and their departments. Good for finding professor names, office rooms, emails, and the department they work in.",
+    "columns": {
+      "id": "INTEGER - Primary key uniquely identifying each professor",
+      "name": "TEXT - Full name of the professor",
+      "email": "TEXT - Email address of the professor",
+      "office": "TEXT - Office room number, e.g., 'Room 302', 'Room 105'",
+      "department_id": "INTEGER - Foreign key referencing departments.id"
+    }
+  },
+  "classrooms": {
+    "description": "Contains classroom locations, capacities, and buildings. Good for finding class rooms, capacities, and building room allocations.",
+    "columns": {
+      "id": "INTEGER - Primary key uniquely identifying each classroom",
+      "building": "TEXT - The building where the room is located, e.g., 'Science Center', 'Main Hall'",
+      "room_number": "TEXT - The specific room number or classroom name, e.g., '101A', '204'",
+      "capacity": "INTEGER - Maximum seating capacity of the classroom"
+    }
+  },
+  "salaries": {
+    "description": "Contains employee salary details and history. Good for finding compensation, payroll, employee earnings, and historic records.",
+    "columns": {
+      "employee_id": "INTEGER - Unique ID of the employee (e.g. professor or staff ID)",
+      "amount": "INTEGER - Annual salary amount in USD",
+      "year": "INTEGER - Fiscal year of the salary record"
+    }
+  }
+}
